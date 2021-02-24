@@ -6,24 +6,26 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("This is the game guess number.");
+            Console.WriteLine("This is the game to guess numbers.");
 
-            Console.WriteLine("First user");
+            Console.WriteLine("First player, please choose a number to guess and the number of allowed attempts.");
             var theNumber = ReadNumberFromConsole();
-
+            Console.WriteLine("Number of allowed attempts: ");
+            int attemptStart = 0;
+            int attemptCount = ReadNumberFromConsole();
             Console.Clear();
-
-            Console.WriteLine("Hi Second user.");
+            Console.WriteLine("Hi Second player.");
             int guessNumber;
-            int attempt = 0;
+            
             bool isWin = false;
             do
             {
-                Console.WriteLine($"Try to guess the number. Your attempt №{++attempt}");
+                Console.WriteLine($"Try to guess the number. Your attempt #{++attemptStart}");
 
                 guessNumber = ReadNumberFromConsole();
                 if (guessNumber < theNumber)
                 {
+
                     Console.WriteLine("you number LESS than The number");
                 }
                 else if (guessNumber > theNumber)
@@ -34,10 +36,11 @@ namespace ConsoleApp1
                 {
                     isWin = true;
                 }
-            } while (guessNumber != theNumber && attempt < 7);
+            } while (guessNumber != theNumber && attemptStart < attemptCount);
 
-            Console.WriteLine(isWin ? "You win" : "Loose!");
+            Console.WriteLine(isWin ? "You win" : "Lose!");
         }
+
 
         /// <summary>
         /// Request data from user while he enter a number
